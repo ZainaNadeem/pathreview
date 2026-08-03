@@ -19,3 +19,19 @@ The current ingestion pipeline creates new embeddings when a repository or docum
 
 ### Selection notes:
 I chose this issue because it involves both backend data flow and AI/ML retrieval behavior. The scope is manageable because the problem is isolated to ingestion and vector storage, but it demonstrates understanding of RAG systems, embeddings lifecycle, and data consistency.
+
+## Week 8 — Reproduction & solution planning
+
+**Reproduction commit link:** 
+PASTE_COMMIT_URL_HERE
+
+**Reproduction summary:**
+Reproduced the stale embedding behavior by re-ingesting an updated document and observing that previous vector data remained available during retrieval.
+
+**PLAN.md link:**
+https://github.com/ZainaNadeem/pathreview/blob/fix/27-stale-vector-embeddings/PLAN.md
+
+**Walkthrough video (recommended):**
+
+**Blockers or open questions:**
+Need to confirm whether stale results are caused by duplicate vector insertion, missing deletion, or vector store update behavior.
