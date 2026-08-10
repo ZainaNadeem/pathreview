@@ -55,7 +55,7 @@ class TestIngestionPipelineStaleEmbeddings:
         pipeline.ingest_resume("profile-1", updated_text, "resume.md")
 
         mock_vector_db.delete.assert_called_once_with(
-            where={"document_id": "resume_profile-1_resume.md"}
+            where={"document_id": {"$eq": "resume_profile-1_resume.md"}}
         )
 
     def test_reingesting_updated_resume_leaves_only_new_vectors(
@@ -107,8 +107,8 @@ class TestIngestionPipelineStaleEmbeddings:
 
         delete_filters = [call.kwargs["where"] for call in mock_vector_db.delete.call_args_list]
         assert delete_filters == [
-            {"document_id": "resume_profile-1_resume.md"},
-            {"document_id": "resume_profile-2_resume.md"},
+            {"document_id": {"$eq": "resume_profile-1_resume.md"}},
+            {"document_id": {"$eq": "resume_profile-2_resume.md"}},
         ]
 
     def test_first_ingestion_still_stores_chunks(
@@ -145,7 +145,7 @@ class TestIngestionPipelineStaleEmbeddings:
         pipeline.ingest_readme("profile-1", "weather-app", updated_text)
 
         mock_vector_db.delete.assert_called_once_with(
-            where={"document_id": "readme_profile-1_weather-app"}
+            where={"document_id": {"$eq": "readme_profile-1_weather-app"}}
         )
 
     def test_reingesting_updated_repo_metadata_deletes_previous_vectors(
@@ -160,7 +160,7 @@ class TestIngestionPipelineStaleEmbeddings:
         pipeline.ingest_repo_metadata("profile-1", {**repo_data, "stars": 12})
 
         mock_vector_db.delete.assert_called_once_with(
-            where={"document_id": "repo_profile-1_weather-app"}
+            where={"document_id": {"$eq": "repo_profile-1_weather-app"}}
         )
 
     def test_delete_failure_prevents_storing_new_chunks(

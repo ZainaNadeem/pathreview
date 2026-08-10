@@ -319,7 +319,7 @@ class IngestionPipeline:
             Exception: Propagates vector store failures so that ingestion does not
                 continue while stale embeddings are still present.
         """
-        self.vector_db.delete(where={"document_id": document_id})
+        self.vector_db.delete(where={"document_id": {"$eq": document_id}})
         logger.info("Deleted existing vectors for document", document_id=document_id)
 
     def _hash_content(self, content: str | bytes) -> str:
