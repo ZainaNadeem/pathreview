@@ -50,7 +50,7 @@ Added `tests/unit/test_pipeline.py` with regression tests covering resume, READM
 
 **Self-review confirmation:** [ ] make check passes  [ ] make test-unit passes
 
-**Verification note:** The targeted ingestion pipeline tests pass (10/10). The full repository checks currently include pre-existing lint/formatting issues and unit-test failures outside the scope of this contribution.
+**Verification note:** The targeted ingestion pipeline tests pass (10/10). The full repository checks report lint/formatting issues and unit-test failures outside the files changed for this contribution.
 
 **Draft PR feedback received from:** none
 
